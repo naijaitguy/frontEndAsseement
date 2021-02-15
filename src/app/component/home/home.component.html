@@ -1,0 +1,49 @@
+<div class="container pt-5">
+    <div class="col-lg-12">
+<div class="row card">
+    
+    <div class="card-header"> <h3 class="text-primary"> Welcome to Easy Pay </h3></div>
+
+    <div class="card-body">
+        Your Number 1 online payment solution.
+    <div>
+        <a> <button class="btn mt-5 btn-success" [routerLink]="['/payment']"> Proceed to make Payment</button></a> 
+    </div>
+
+ <div>
+    <h3 class=" mt-5 text-primary"> Payment History</h3>
+ </div>
+
+ <div class="table-responsive">
+ <table class="table table-bordered table-striped table-hover ">
+     <thead><tr>
+        <th>Amount</th>
+        <th> Code </th>
+        <th> Card Name</th>
+        <th> Card Number</th>
+        <th> Expire Date </th>
+     </tr>
+       
+     </thead>
+    
+  <tbody>
+    <tr *ngFor =" let record of paymentreocrd ">
+       
+        <td>{{ record.amount}}</td>
+       <td>{{record.code}} </td>
+       <td>{{record.cardname}} </td>
+       <td>{{record.cardnumber}} </td>
+       <td>{{record.date}}</td>
+
+</tr> 
+  </tbody>
+     
+   
+</table>
+</div>
+
+
+    </div>
+</div>
+</div>
+</div>

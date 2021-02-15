@@ -1,0 +1,95 @@
+<div class=" container">
+    <div class="mb-2">
+        <a> <button class="btn mt-2 btn-success" [routerLink]="['/']"> Return to Home Page</button></a>
+    </div>
+    <div class=" col-md-offset-4 col-lg-5">
+<div class="row card">
+    
+    <div class="card-header"> <h3 class="text-primary"> Easy Payment </h3></div>
+    <div class="card-body">
+
+        <div *ngIf="loading">  Loading....</div>
+        <div *ngIf="success" class="alert alert-success">  Payment successful </div>
+        <div *ngIf="failure" class="alert alert-danger">  Error Occor while processing your payment. Pls try again </div>
+        <form [formGroup]="FormData" (ngSubmit)="ProcessForm()" >
+
+        <div class="form-group">
+
+            <label>Credit card Number</label>
+            <input type="number" formControlName="cardnumber"  class="form-control"  [ngClass]="{'is-invalid':submitted && f.cardnumber.errors }">
+
+            <div *ngIf ="submitted && f.cardnumber.errors" class="invalid-feedback">
+                <span *ngIf ="submitted && f.cardnumber.errors.required"> * Card Number is Required</span>
+                <span *ngIf ="submitted && f.cardnumber.errors.pattern"> * Card Number Must be 16 Digit Number only</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label> card Holder Name</label>
+            <input type="text" formControlName="cardname"  class="form-control"  [ngClass]="{'is-invalid':submitted && f.cardname.errors }">
+
+            <div *ngIf ="submitted && f.cardname.errors" class="invalid-feedback">
+                <span *ngIf ="submitted && f.cardname.errors.required"> * Card Holder Name is Required</span>
+                <span *ngIf ="submitted && f.cardname.errors.pattern"> * Name Must contain Letter only</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label>Expiring Date</label>
+            <input type="date" formControlName="date" class="form-control"  [ngClass]="{'is-invalid':expire}" [ngClass]="{'is-invalid':submitted && f.date.errors }">
+            <div *ngIf="expire" class="invalid-feedback"> * Card Already Expires</div>
+            
+            <div *ngIf ="submitted && f.date.errors" class="invalid-feedback">
+             
+                <span *ngIf ="submitted && f.date.errors.required"> * Date is Required, </span>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label>Security code</label>
+            <input type="password" formControlName="code" class="form-control"  [ngClass]="{'is-invalid':submitted && f.code.errors }">
+            <div *ngIf ="submitted && f.code.errors" class="invalid-feedback">
+             
+                <span *ngIf ="submitted && f.code.errors.pattern"> * Security  Code must be 3 Digit Number only, </span>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label>Amount</label>
+            <input type="number" formControlName="amount" class="form-control" [ngClass]="{'is-invalid':submitted && f.amount.errors }"/>
+            <div *ngIf ="submitted && f.amount.errors" class="invalid-feedback">
+                <span *ngIf ="submitted && f.amount.errors.required"> *  Amount is Required</span>
+                <span *ngIf ="submitted && f.amount.errors.pattern"> *  Amount must be Number only, greather than 0</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <input type="submit" value="Submit" class="btn btn-success">
+           
+         </div>
+        </form>
+
+
+
+       
+
+
+        
+    </div>
+</div>
+</div>
+
+
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
+  <p style="font-size: 20px; color: white">Processing your payment...</p>
+</ngx-spinner>
