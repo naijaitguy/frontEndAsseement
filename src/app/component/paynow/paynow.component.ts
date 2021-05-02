@@ -52,9 +52,7 @@ export class PaynowComponent implements OnInit {
  
   ngOnInit(): void {
 
-    
-
-   
+      
   }
   get f(){  return this.FormData.controls; }
   
@@ -75,8 +73,6 @@ export class PaynowComponent implements OnInit {
 
     this.store.dispatch(new payclick(Payload));
     this.getState.subscribe((state)=>{
-
-     // console.log(state)
       this.loading = state.loading,
       this.success = state.paysuccess,
       this.failure = state.payfailure,
